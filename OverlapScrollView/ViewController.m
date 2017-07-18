@@ -89,6 +89,13 @@
             break;
         case UIGestureRecognizerStateEnded:
             if (isVertical) {
+                
+                if (   self.verticalScrollView.contentOffset.y < 0
+                    || self.verticalScrollView.contentOffset.y > self.verticalScrollView.contentSize.height - h) {
+                    [self.verticalScrollView setContentOffset:currentContentOff animated:YES];
+                    return;
+                }
+                
                 [self.verticalScrollView setContentOffset:CGPointMake(0,  h - currentContentOff.y) animated:YES];
             }
             break;
